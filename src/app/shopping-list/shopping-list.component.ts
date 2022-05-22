@@ -1,5 +1,6 @@
 import { Ingrident } from './../shared/ingridents.model';
 import { Component, OnInit } from '@angular/core';
+import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
- Ingridents:Ingrident[]=[
-   new Ingrident('lemon',5),
-   new Ingrident('orange',3)
- ];
-  constructor() { }
+ Ingridents:Ingrident[];
+  constructor(private slServerice:ShoppingListService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.Ingridents=this.slServerice.getIngridents();
+    // this.slServerice.ingridentsChanged
+    // .subscribe(
+    //      (ingridents:Ingrident[])=>{
+    //        this.Ingridents=this.Ingridents;
+
+    //      }
+    // );
   }
-
+ 
 }
